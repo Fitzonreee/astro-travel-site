@@ -5,6 +5,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Tag from '../../components/Tag.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import AboutTheAuthor from "../../components/AboutTheAuthor.astro";
+import ArticlePreview from "../../components/ArticlePreview.astro";
 
 export async function getStaticPaths() {
   const allArticles = await getCollection('articles');
@@ -21,12 +22,16 @@ const articleAuthor = article.data.author;
 const authorInfo = authors.find(function(author) {
   return author.name === articleAuthor;
 });
+
+const featuredArticles = await getCollection("articles", ({ data }) => {
+  return data.featured;
+});
 ---
 
 <BaseLayout>
   <article class="full-article">
     <div class="container flow" data-type="narrow">
-      <div class="flex-group align-center width-full">
+      <div class="flex-group align-center full-width">
         <Tag class="tag" tag={article.data.tags[0]} />
         <FormattedDate date={article.data.date} />
         <a href="#" class="push-start" >
@@ -49,4 +54,25 @@ const authorInfo = authors.find(function(author) {
     </div>
   </article>
   <!-- featured travel articles here -->
+  <div class="container" data-type="narrow">
+    <section class="featured section | flow">
+      <h2 class="heading-2">Featured travel articles</h2>
+      <div class="grid-auto-fit">
+        {
+          featuredArticles
+            .slice(0, 3)
+            .map((article) => <ArticlePreview excerptLength="80" {article} />)
+        }
+      </div>
+    </section>
+  </div>
 </BaseLayout>
+
+<style lang="scss" scoped>
+  @use "../../styles/abstracts" as *;
+
+  .featured {
+    margin-top: $section-padding-block;
+    border-top: $divider;
+  }
+</style>

@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticlePreview from "../components/ArticlePreview.astro";
+import ViewAllBlogs from "../components/ViewAllBlogs.astro";
 
 const allArticles = await getCollection("articles");
 const featuredArticles = await getCollection('articles', ({data}) => {
@@ -28,17 +29,17 @@ allArticles.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
       <h2 class="heading-2">Featured articles</h2>
       <div class="home-featured-grid">
         <ArticlePreview article={featuredArticles[0]} excerptLength="200" />
-        <div class="">
+        <div>
           {
             featuredArticles
               .slice(1, 4)
-              .map((article) => <ArticlePreview {article} />)
+              .map((article) => <ArticlePreview {article} excerptLength="80" />)
           }
         </div>
       </div>
     </section>
 
-    <!-- all blogs link -->
+     <ViewAllBlogs />
 
     <section class="section flow">
       <h2 class="heading-2">Travel articles</h2>
@@ -47,8 +48,8 @@ allArticles.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
       </div>
     </section>
 
-    <!-- all blogs link -->
-
+    <ViewAllBlogs />
+    
     <!-- Newsletter signup -->
 
   </div>
