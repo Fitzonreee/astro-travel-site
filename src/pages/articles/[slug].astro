@@ -1,8 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
+import authors from "../../content/authors/authors.json";
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Tag from '../../components/Tag.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
+import AboutTheAuthor from "../../components/AboutTheAuthor.astro";
 
 export async function getStaticPaths() {
   const allArticles = await getCollection('articles');
@@ -15,6 +17,10 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 const { Content } = await article.render();
+const articleAuthor = article.data.author;
+const authorInfo = authors.find(function(author) {
+  return author.name === articleAuthor;
+});
 ---
 
 <BaseLayout>
@@ -29,12 +35,17 @@ const { Content } = await article.render();
         </a>
       </div>
       <h1 class="heading-2">{article.data.title}</h1>
-      <h2 class="clr-neutral-300 fs-600">{article.data.subtitle}</h2>
+      <h2 class="full-article__section-headline clr-neutral-300 fs-600">{article.data.subtitle}</h2>
       <img
           src=`/images/articles/${article.data.imageSrc}`
           alt={article.data.imageAlt}
         />
       <Content />
+      <AboutTheAuthor
+        name={authorInfo.name}
+        description={authorInfo.description}
+        image={authorInfo.image}
+      />
     </div>
   </article>
   <!-- featured travel articles here -->

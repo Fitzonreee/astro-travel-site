@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Claudette Tessier",
+    "image": "claudette-tessier.jpg",
+    "description": "Passionate traveler with an insatiable curiosity, exploring hidden gems and documenting cultural nuances. Her wanderlust knows no bounds, and every journey becomes a chapter in her vibrant tapestry of experiences."
+  },
+  {
+    "name": "David Traveleree",
+    "image": "david-traveleree.jpg",
+    "description": "Wanderlust enthusiast capturing moments across continents, weaving stories through the lens of adventure. His camera is a faithful companion, preserving fleeting sunsets, bustling markets, and the laughter of newfound friends."
+  },
+  {
+    "name": "Liam Lawson",
+    "image": "liam-lawson.jpg",
+    "description": "Fearless adventurer chasing adrenaline in remote landscapes, where every peak holds a new revelation. His backpack carries dreams, and his heart beats to the rhythm of distant trails, echoing tales of courage and wonder."
+  },
+  {
+    "name": "Manjusha Chaudhari",
+    "image": "manjusha-chaudhari.jpg",
+    "description": "Curious explorer unraveling cultural mysteries, savoring flavors, and connecting with diverse communities. Her passport is a mosaic of memories—each stamp a doorway to understanding, each encounter a brushstroke on her canvas of discovery."
+  },
+  {
+    "name": "Maya Lanstro",
+    "image": "maya-lanstro.jpg",
+    "description": "Globe-trotter with an appetite for both cuisines and vistas, painting memories across the world's canvas. Her footsteps trace constellations of stories, and her laughter resonates in bustling squares and tranquil temples."
+  }
+]

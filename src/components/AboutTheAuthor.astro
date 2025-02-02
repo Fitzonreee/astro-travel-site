@@ -1,0 +1,29 @@
+---
+const { name, image, description } = Astro.props;
+---
+
+<aside class="flow">
+  <h2 class="author-label fs-800 fw-semi-bold">About the author</h2>
+  <div class="author flex-group">
+    <img class="border-radius-2" src=`/images/authors/${image}` alt="" />
+    <div>
+      <h3 class="fs-600 fw-semi-bold">{name}</h3>
+      <p class="clr-neutral-300">{description}</p>
+    </div>
+  </div>
+</aside>
+
+<style lang="scss" scoped>
+  .author {
+    img {
+      width: 9.5rem;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    div {
+      flex-grow: 1;
+      flex-basis: 70%;
+    }
+  }
+</style>
