@@ -1,0 +1,30 @@
+---
+const { date } = Astro.props;
+
+let suffix;
+let num = date.toLocaleDateString('default', {day: 'numeric'});
+
+if (num == 1) {
+  suffix = "st"
+} else if (num == 2) {
+  suffix = "nd"
+} else {
+  suffix = "th"
+}
+
+
+---
+
+<time datetime={date.toISOString()}>
+  {`${date.toLocaleDateString('default', {day: 'numeric'})}${suffix}`}
+  {date.toLocaleDateString('default', {month: 'short'})}, 
+  {date.getFullYear()}
+</time>
+
+<style lang='scss' scoped>
+  @use '../styles/abstracts' as *;
+
+  time {
+    color: $date-color;
+  }
+</style>

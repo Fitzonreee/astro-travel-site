@@ -9,6 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.1.7"
+    "astro": "^5.1.7",
+    "markdown-it": "^14.1.0"
+  },
+  "devDependencies": {
+    "sass": "^1.83.4"
   }
 }

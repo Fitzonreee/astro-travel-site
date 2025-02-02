@@ -1,0 +1,53 @@
+---
+import Tag from "./Tag.astro"
+import FormattedDate from './FormattedDate.astro';
+import { createExcerpt } from "../utils/create-excerpt";
+const { article, excerptLength = 0 } = Astro.props
+---
+
+<article class="flow">
+  <div class="image-container">
+    <img
+      src={`/images/articles/${article.data.imageSrc}`}
+      alt={article.data.imageAlt}
+    />
+    <Tag class="tag" tag={article.data.tags[0]} />
+  </div>
+  <FormattedDate date={article.data.date} />
+  <h2 class="fs-500 fw-bold">{article.data.title}</h2>
+  {
+    excerptLength > 0 && <p> {createExcerpt(article.body).substring(0, excerptLength)}...</p>
+  }
+  <p>
+    <a href={`/articles/${article.slug}`}>
+      Read more
+      <span class="visually-hidden">about {article.data.title}</span>
+    </a>
+  </p>
+</article>
+
+<style lang="scss" scoped>
+  @use "../styles/abstracts/" as *;
+
+  article {
+    --flow-spacer: #{$article-preview-spacing};
+  }
+
+  .image-container {
+    position: relative;
+  }
+
+  .tag {
+    position: absolute;
+    bottom: $article-preview-tag-offset;
+    left: $article-preview-tag-offset;
+  }
+
+  img { 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: $article-preview-image-aspect-ratio;
+    border-radius: $border-radius-2;
+  }
+</style>

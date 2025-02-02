@@ -1,0 +1,21 @@
+---
+const { label } = Astro.props;
+---
+
+<nav aria-label={label}>
+  <ul class="nav flex-group">
+    <slot />
+  </ul>
+</nav>
+
+<style lang="scss" scoped>
+  @use "../styles/abstracts" as *;
+  
+  .nav {
+    --flex-column-gap: #{$navigation-gap};
+
+    list-style: none;
+    font-family: $navigation-font-family;
+    font-weight: $navigation-font-weight;
+  }
+</style>

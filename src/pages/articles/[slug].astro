@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Tag from '../../components/Tag.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+
+export async function getStaticPaths() {
+  const allArticles = await getCollection('articles');
+
+  return allArticles.map(article => ({
+    params: { slug: article.slug }, 
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await article.render();
+---
+
+<BaseLayout>
+  <article class="full-article">
+    <div class="container flow" data-type="narrow">
+      <div class="flex-group align-center width-full">
+        <Tag class="tag" tag={article.data.tags[0]} />
+        <FormattedDate date={article.data.date} />
+        <a href="#" class="push-start" >
+          <img src="/images/icons/share.svg" alt="" />
+          <span>Share</span>
+        </a>
+      </div>
+      <h1 class="heading-2">{article.data.title}</h1>
+      <h2 class="clr-neutral-300 fs-600">{article.data.subtitle}</h2>
+      <img
+          src=`/images/articles/${article.data.imageSrc}`
+          alt={article.data.imageAlt}
+        />
+      <Content />
+    </div>
+  </article>
+  <!-- featured travel articles here -->
+</BaseLayout>

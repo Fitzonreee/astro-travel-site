@@ -1,0 +1,19 @@
+---
+import "../styles/main.scss";
+const { title } = Astro.props;
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Astro description" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="generator" content={Astro.generator} />
+  <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+    rel="stylesheet"
+  />
+</head>

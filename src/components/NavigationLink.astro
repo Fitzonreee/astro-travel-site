@@ -1,0 +1,20 @@
+---
+const { url, textContent } = Astro.props;
+---
+
+<li>
+  <a href={url}>{textContent}</a>
+</li>
+
+<style lang="scss" scoped>
+  @use "../styles/abstracts" as *;
+  
+  a {
+    color: $navigation-color;
+    text-decoration: $navigation-link-text-decoration;
+
+    &:is(:hover, :focus) {
+      color: $navigation-color-hover;
+    }
+  }
+</style>

@@ -1,0 +1,9 @@
+---
+const nameOfSite = "Food Fun Travel";
+const { class: className } = Astro.props;
+---
+
+<a href="/" class:list={className}>
+  <img aria-hidden="true" src="/images/icons/logo.svg" alt="" />
+  <p class="visually-hidden">{nameOfSite}</p>
+</a>

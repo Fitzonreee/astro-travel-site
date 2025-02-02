@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticlePreview from "../../components/ArticlePreview.astro";
+
+export async function getStaticPaths() {
+  const allArticles = await getCollection('articles');
+
+  // create an array of all the tags, with no repeats
+  const uniqueTags = [
+    ...new Set(allArticles.map((article) => article.data.tags).flat())
+  ];
+
+  // map over those to create a page for each tag
+  return uniqueTags.map((tag) => {
+    
+    const slugFriendlyTag = tag.toLowerCase().replace(/\s+/g, '-');
+    
+    const filteredArticles = allArticles.filter((article) => (
+      article.data.tags.includes(tag))
+    );
+
+    return {
+      params: { tag: slugFriendlyTag},
+      props: { 
+        articles: filteredArticles,
+        tag, tag,
+      }
+     }
+  })
+}
+
+const { articles, tag } = Astro.props;
+---
+
+<BaseLayout>
+  <div class="container flow">
+    <h1 class="heading-2 margin-block-end-8">{tag}</h1>
+    <div class="grid-auto-fit">
+      {articles.map((article) => <ArticlePreview {article} />)}
+    </div>
+  </div>
+</BaseLayout>

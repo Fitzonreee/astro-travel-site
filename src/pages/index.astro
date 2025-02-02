@@ -1,11 +1,68 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ArticlePreview from "../components/ArticlePreview.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const allArticles = await getCollection("articles");
+const featuredArticles = await getCollection('articles', ({data}) => {
+  return data.featured;
+});
+
+allArticles.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout title="Let's get to work" withGradient>
+  <div class="container flow">
+    <section class="section">
+      <h1 class="heading-1">Travel<br />Food Fun</h1>
+      <p class="fs-500">
+        Discover the perfect blend of adventure and flavor at Travel Fun Food!
+        Dive into captivating travel stories and indulge your taste buds with
+        delectable culinary experiences. Join us on a journey of exploration and
+        gastronomy, where every adventure is seasoned with excitement. Ready to
+        embark on a world of travel, fun, and food? 🌍
+      </p>
+    </section>
+
+    <section class="section flow">
+      <h2 class="heading-2">Featured articles</h2>
+      <div class="home-featured-grid">
+        <ArticlePreview article={featuredArticles[0]} excerptLength="200" />
+        <div class="">
+          {
+            featuredArticles
+              .slice(1, 4)
+              .map((article) => <ArticlePreview {article} />)
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- all blogs link -->
+
+    <section class="section flow">
+      <h2 class="heading-2">Travel articles</h2>
+      <div class="grid-auto-fit">
+        {allArticles.slice(0, 3).map((article) => <ArticlePreview {article} excerptLength="80" />)}
+      </div>
+    </section>
+
+    <!-- all blogs link -->
+
+    <!-- Newsletter signup -->
+
+  </div>
+
+</BaseLayout>
+
+<style lang="scss" scoped>
+  // Temp styles -- will be cleaned up w/ finishing touches
+  .home-featured-grid {
+    display: grid;
+    gap: 1rem;
+
+    @media (min-width: 800px) {
+      grid-template-columns: 3fr 1fr;
+    }
+  }
+</style>

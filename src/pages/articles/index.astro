@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticlePreview from "../../components/ArticlePreview.astro";
+
+const allArticles = await getCollection("articles");
+allArticles.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
+---
+
+<BaseLayout title="Food Fun Travel | Articles">
+  <div class="container">
+      <div class="grid-auto-fit">
+        {allArticles.map( (article) => (
+          <ArticlePreview {article} excerptLength="80" />
+          )
+        )}
+    </div>
+  </div>
+</BaseLayout>

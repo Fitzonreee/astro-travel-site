@@ -1,0 +1,57 @@
+---
+import LogoLink from "./LogoLink.astro";
+import PrimaryNavigation from "./PrimaryNavigation.astro";
+import NavigationLink from "./NavigationLink.astro";
+import SocialLinks from "./SocialLinks.astro";
+// Move this to a global JSON file so header and footer can use it
+const NavigationLinks = [
+  {
+    name: "Home",
+    url: "/"
+  },
+  {
+    name: "Articles",
+    url: "/articles"
+  },
+  {
+    name: "About",
+    url: "/about"
+  }
+]
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="flex-group align-center width-full">
+      <LogoLink />
+      <PrimaryNavigation label="footer navigation">
+        {
+          NavigationLinks.map((link) => (
+            <NavigationLink textContent={link.name} url={link.url} />            
+          ))
+        }
+      </PrimaryNavigation>
+      <SocialLinks />
+      <p class="push-start">Copyright 2025</p>
+    </div>
+  </div>
+</footer>
+
+<style lang="scss">
+  @use "../styles/abstracts" as *;
+
+  .site-footer {
+    background-color: $footer-background-color;
+    color: $footer-text-color;
+    
+    a {
+      color: $footer-link-color;
+      text-decoration: $footer-link-text-decoration;
+      font-family: $footer-link-font-family;
+
+      &:is(:hover, :focus) {
+        color: $footer-link-color-hover;
+      }
+    }
+  }
+</style>
