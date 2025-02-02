@@ -7,19 +7,19 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticlePreview from "../components/ArticlePreview.astro";
 
 const allArticles = await getCollection("articles");
-allArticles.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
+const latestArticle = allArticles.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date))[0];
 ---
 
 <BaseLayout title="Explore behind TFF">
   <div class="full-article container flow" data-type="narrow">
     <h1 class="heading-2">Explore behind TFF</h1>
-    <p class="fs-600">
+    <p class="">
       Welcome to Travel Fun Food! I'm Linda Xu, the founder and chief explorer
       behind this adventure-filled blog. With a passion for travel, a love for
       diverse cuisines, and an insatiable curiosity for the world, I embarked on
       a journey to share my experiences and discoveries with fellow wanderers.
     </p>
-    <h2 id="from-wanderlust-to-words-my-background">
+    <h2>
       From Wanderlust to Words: My Background
     </h2>
     <p>
@@ -30,7 +30,7 @@ allArticles.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
       ignited a desire to uncover the hidden gems of our planet.
     </p>
     <img src="/images/about/about-page-1.jpg" alt="" />
-    <h2 id="the-birth-of-travel-fun-food">The Birth of Travel Fun Food</h2>
+    <h2>The Birth of Travel Fun Food</h2>
     <p>
       The idea of Travel Fun Food was born from a simple realization – that the
       joy of travel and the delight of savoring unique cuisines should be
@@ -38,7 +38,7 @@ allArticles.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
       into a vibrant platform where travel enthusiasts and foodies alike could
       find inspiration, tips, and tales from my journeys around the globe.
     </p>
-    <h2 id="exploring-the-world-one-post-at-a-time">
+    <h2>
       Exploring the World, One Post at a Time
     </h2>
     <p>
@@ -50,7 +50,7 @@ allArticles.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
     </p>
     <img src="/images/about/about-page-2.jpg" alt="" />
 
-    <h2 id="become-a-part-of-the-adventure">Become a Part of the Adventure</h2>
+    <h2>Become a Part of the Adventure</h2>
     <p>
       As we continue to unravel the wonders of the world, I invite you to join
       our community of fellow travelers and food enthusiasts. Follow along for
@@ -58,12 +58,11 @@ allArticles.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
       touch of spontaneity to our journeys. Let&#39;s make Travel Fun Food not
       just a blog but a shared experience of discovery.
     </p>
-
     <NewsletterCTA />
   </div>
   <div class="container margin-block-10 flow">
     <h2 class="heading-2">Read the most recent article</h2>
-    <ArticlePreview article={allArticles[0]} />
+    <ArticlePreview article={latestArticle} />
     <ViewAllBlogs />
   </div>
 </BaseLayout>
