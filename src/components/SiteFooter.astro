@@ -3,30 +3,16 @@ import LogoLink from "./LogoLink.astro";
 import PrimaryNavigation from "./PrimaryNavigation.astro";
 import NavigationLink from "./NavigationLink.astro";
 import SocialLinks from "./SocialLinks.astro";
-// Move this to a global JSON file so header and footer can use it
-const NavigationLinks = [
-  {
-    name: "Home",
-    url: "/"
-  },
-  {
-    name: "Articles",
-    url: "/articles"
-  },
-  {
-    name: "About",
-    url: "/about"
-  }
-]
+import NavLinks from "../content/navigation/links.json";
 ---
 
-<footer class="site-footer">
+<footer class="site-footer padding-block-4 margin-block-start-12">
   <div class="container">
     <div class="flex-group align-center full-width">
       <LogoLink />
       <PrimaryNavigation label="footer navigation">
         {
-          NavigationLinks.map((link) => (
+          NavLinks.map((link) => (
             <NavigationLink textContent={link.name} url={link.url} />            
           ))
         }

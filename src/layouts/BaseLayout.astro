@@ -20,6 +20,12 @@ const { title, withGradient } = Astro.props;
 <style lang="scss">
   @use "../styles/abstracts/" as *;
 
+  body {
+    display: grid;
+    min-height: 100dvh;
+    grid-template-rows: auto 1fr auto;
+  }
+
   .with-gradient {
     background-image: $page-top-gradient;
     background-repeat: no-repeat;

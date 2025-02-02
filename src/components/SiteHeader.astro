@@ -4,22 +4,8 @@ import LogoLink from "./LogoLink.astro";
 import NavigationLink from "./NavigationLink.astro";
 import PrimaryNavigation from "./PrimaryNavigation.astro";
 import SocialLinks from "./SocialLinks.astro";
+import NavLinks from "../content/navigation/links.json";
 const { skipTo = "#main" } = Astro.props;
-// Move this to a global JSON file so header and footer can use it
-const NavigationLinks = [
-  {
-    name: "Home",
-    url: "/"
-  },
-  {
-    name: "Articles",
-    url: "/articles"
-  },
-  {
-    name: "About",
-    url: "/about"
-  }
-]
 ---
 
 <header class="site-header">
@@ -29,8 +15,9 @@ const NavigationLinks = [
     <div class="site-header__inner">
       <LogoLink class="push-end" />
       <PrimaryNavigation label="primary navigation">
+        <NavigationLink textContent="Home" url="/" />     
         {
-          NavigationLinks.map((link) => (
+          NavLinks.map((link) => (
             <NavigationLink textContent={link.name} url={link.url} />            
           ))
         }

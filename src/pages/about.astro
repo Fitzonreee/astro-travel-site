@@ -1,27 +1,69 @@
 ---
+import { getCollection } from "astro:content";
+
+import NewsletterCTA from "../components/NewsletterCTA.astro";
+import ViewAllBlogs from "../components/ViewAllBlogs.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ArticlePreview from "../components/ArticlePreview.astro";
+
+const allArticles = await getCollection("articles");
+allArticles.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
 ---
 
-<BaseLayout title="About us">
-  <div class="container flow">
-    <h1 class="heading-1">About us</h1>
-    <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum nulla
-      repellendus dolore quam quas? Nisi eaque veniam dolorem enim. Odit
-      incidunt nisi dignissimos facilis perspiciatis quidem accusantium at
-      consectetur minus.
+<BaseLayout title="Explore behind TFF">
+  <div class="full-article container flow" data-type="narrow">
+    <h1 class="heading-2">Explore behind TFF</h1>
+    <p class="fs-600">
+      Welcome to Travel Fun Food! I'm Linda Xu, the founder and chief explorer
+      behind this adventure-filled blog. With a passion for travel, a love for
+      diverse cuisines, and an insatiable curiosity for the world, I embarked on
+      a journey to share my experiences and discoveries with fellow wanderers.
     </p>
+    <h2 id="from-wanderlust-to-words-my-background">
+      From Wanderlust to Words: My Background
+    </h2>
     <p>
-      Aperiam non nulla recusandae totam atque officia debitis tenetur, natus
-      veritatis eius perferendis libero earum voluptatum doloremque dignissimos,
-      ut laborum illum eligendi autem ipsa quaerat. Dolorum consequatur ipsum
-      harum ut.
+      In a world where every journey leaves an indelible mark, let me share a
+      bit about my background. Raised in [Author&#39;s Hometown], my love for
+      exploration was sparked during childhood family vacations. From quaint
+      villages to bustling cities, each destination fueled my curiosity and
+      ignited a desire to uncover the hidden gems of our planet.
     </p>
+    <img src="/images/about/about-page-1.jpg" alt="" />
+    <h2 id="the-birth-of-travel-fun-food">The Birth of Travel Fun Food</h2>
     <p>
-      Dolore molestias et esse neque beatae atque. Quas necessitatibus,
-      quibusdam est vero neque corporis doloremque consectetur error, dicta
-      animi commodi! Accusamus distinctio dolor eligendi sint repudiandae
-      sapiente adipisci nemo doloribus?
+      The idea of Travel Fun Food was born from a simple realization – that the
+      joy of travel and the delight of savoring unique cuisines should be
+      shared. What began as a personal journal of my escapades soon transformed
+      into a vibrant platform where travel enthusiasts and foodies alike could
+      find inspiration, tips, and tales from my journeys around the globe.
     </p>
+    <h2 id="exploring-the-world-one-post-at-a-time">
+      Exploring the World, One Post at a Time
+    </h2>
+    <p>
+      Since its inception in 2020, Travel Fun Food has evolved into a tapestry
+      of stories, photographs, and recommendations. From the bustling streets of
+      Ahmedabad to the serene landscapes of India, each post is a chapter in the
+      ever-growing story of exploration and appreciation for the world&#39;s
+      diversity.
+    </p>
+    <img src="/images/about/about-page-2.jpg" alt="" />
+
+    <h2 id="become-a-part-of-the-adventure">Become a Part of the Adventure</h2>
+    <p>
+      As we continue to unravel the wonders of the world, I invite you to join
+      our community of fellow travelers and food enthusiasts. Follow along for
+      travel tips, culinary delights, and the occasional mishap that adds a
+      touch of spontaneity to our journeys. Let&#39;s make Travel Fun Food not
+      just a blog but a shared experience of discovery.
+    </p>
+
+    <NewsletterCTA />
+  </div>
+  <div class="container margin-block-10 flow">
+    <h2 class="heading-2">Read the most recent article</h2>
+    <ArticlePreview article={allArticles[0]} />
+    <ViewAllBlogs />
   </div>
 </BaseLayout>
