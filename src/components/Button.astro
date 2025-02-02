@@ -25,7 +25,11 @@ if (href) El = "a";
     border: $button-border;
     border-radius: $button-border-radius;
     transition: 275ms ease;
-    min-width: fit-content;
+    // min-width: 100%;
+    
+    @include mq(medium) {
+      min-width: fit-content;
+    }
 
     &[data-type="primary"] {
       background-color: $button-primary-background;

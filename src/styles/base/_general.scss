@@ -19,3 +19,10 @@ a:is(:hover, :focus) {
   color: $link-color-hover;
   text-decoration: $link-decoration-hover;
 }
+
+input {
+  font: $form-input-font;
+  border: $form-input-border;
+  border-radius: $form-input-border-radius;
+  padding: $form-input-padding;
+}

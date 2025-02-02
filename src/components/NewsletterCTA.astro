@@ -1,0 +1,53 @@
+---
+import Button from "./Button.astro";
+const { withImage } = Astro.props
+---
+
+<section class:list={withImage && "with-image"}>
+  <h2>Want to get the latest insights on Travel Fun Food?</h2>
+  <p>We promise, we won't spam you.</p>
+  <form class="margin-block-start-10">
+     <label class="visually-hidden" for="email">Email:</label>
+       <div class="flex-group full-width">
+        <input id="email" placeholder="Email">
+        <Button theme="primary">Subscribe to newsletter</Button>   
+     </div>
+  </form>
+</section>
+
+<style lang="scss" scoped>
+  @use "../styles/abstracts" as *;
+
+  section {
+    padding: $newsletter-cta-base-padding;
+    background-image: $newsletter-cta-base-background-image;
+    border: $newsletter-cta-base-border;
+    border-radius: $newsletter-cta-base-border-radius;
+    font-size: $newsletter-cta-base-body-size;
+    color: $newsletter-cta-base-body-color;
+  }
+
+  h2 {
+    color: $newsletter-cta-base-heading-color;
+    font-family: $newsletter-cta-base-heading-family;
+    font-size: $newsletter-cta-base-heading-size;
+    font-weight: $newsletter-cta-base-heading-weight;
+  }
+
+  input {
+    flex: 1;
+  }
+
+  .with-image {
+    color: $newsletter-cta-image-body-color;
+    background-image: $newsletter-cta-image-background-image;
+    background-size: $newsletter-cta-image-background-size;
+    background-repeat: $newsletter-cta-image-background-repeat;
+    background-position: $newsletter-cta-image-background-position;
+
+    h2 {
+      font-size: $newsletter-cta-image-heading-size;
+      max-width: $newsletter-cta-image-heading-max-width;
+    }
+  }
+</style>

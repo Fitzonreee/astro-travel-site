@@ -197,3 +197,38 @@ $article-lead-font-size-lg-screen: $font-size-600;
 // $form-placeholder-font-size: $body-font-size;
 
 // $form-group-spacing: 0.5rem;
+
+// Form elements
+$form-input-font: inherit;
+$form-input-border: 1px solid $color-neutral-100;
+$form-input-border-radius: $border-radius-2;
+$form-input-padding: $size-3 $size-6;
+
+// NewsletterCTA
+$newsletter-cta-base-heading-family: $font-family-accent;
+$newsletter-cta-base-heading-size: $font-size-600;
+$newsletter-cta-base-heading-weight: $font-weight-bold;
+$newsletter-cta-base-heading-color: $color-neutral-black;
+$newsletter-cta-base-body-size: $font-size-500;
+$newsletter-cta-base-body-color: $color-neutral-300;
+$newsletter-cta-base-padding: $size-8;
+$newsletter-cta-base-background-image: linear-gradient(
+  transparent,
+  $color-accent-100
+); 
+$newsletter-cta-base-border-radius: $border-radius-2;
+$newsletter-cta-base-border: 1px solid $color-neutral-100;
+
+$newsletter-cta-image-heading-size: $font-size-700;
+$newsletter-cta-image-heading-max-width: 23ch;
+$newsletter-cta-image-body-color: $color-neutral-black;
+$newsletter-cta-image-background-image: linear-gradient(
+    90deg,
+    $color-accent-300 30%,
+    transparent 80%
+  ),
+  url("/images/newsletter-cta.jpg");
+$newsletter-cta-image-background-size: 100%, 70%;
+$newsletter-cta-image-background-repeat: no-repeat;
+$newsletter-cta-image-background-position: right;
+
