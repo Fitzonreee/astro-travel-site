@@ -1,0 +1,48 @@
+---
+import ArticlePreview from "./ArticlePreview.astro";
+
+const { articles, numOfArticles, columnSize="40%", excerptLength = 80 } = Astro.props
+---
+
+<div class="overflow-grid-container">
+  <div class="overflow-grid" style=`--overflow-grid-column-size: ${columnSize}`>
+    {
+      articles.slice(0, numOfArticles).map((article) => <ArticlePreview {article} {excerptLength} />)
+    }
+  </div>
+</div>
+
+<style lang="scss" scoped>
+  @use '../styles/abstracts/' as *;
+  
+  .overflow-grid-container {
+    --_overflow-grid-direction: var(--overflow-grid-direction, horizontal);
+    container-type: inline-size;
+  }
+
+  .overflow-grid {
+    display: grid;
+    overflow-x: auto;
+    padding-block-end: $size-4;
+    gap: $size-4;
+
+    @container style(--_overflow-grid-direction: horizontal) {
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+
+      @container (width < 768px) {
+        width: calc(100% + $container-min-margin-inline);
+        grid-auto-columns: var(--overflow-grid-column-size);
+
+        @media (hover: hover) {
+          scrollbar-width: thin;
+          scrollbar-color: transparent transparent;
+          &:hover {
+            // scrollbar-color: revert;
+          }
+        }
+      }
+    }
+
+  }
+</style>

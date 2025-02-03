@@ -3,11 +3,16 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticlePreview from "../components/ArticlePreview.astro";
 import ViewAllBlogs from "../components/ViewAllBlogs.astro";
+import OverflowGrid from "../components/OverflowGrid.astro";
+import NewsletterCTA from "../components/NewsletterCTA.astro";
 
 const allArticles = await getCollection("articles");
 const featuredArticles = await getCollection('articles', ({data}) => {
   return data.featured;
 });
+
+const mainFeaturedArticle = featuredArticles[0];
+const otherFeaturedArticles = featuredArticles.slice(1,4)
 
 allArticles.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
 ---
@@ -28,13 +33,13 @@ allArticles.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
     <section class="section flow">
       <h2 class="heading-2">Featured articles</h2>
       <div class="home-featured-grid">
-        <ArticlePreview article={featuredArticles[0]} excerptLength="200" />
-        <div>
-          {
-            featuredArticles
-              .slice(1, 4)
-              .map((article) => <ArticlePreview {article} excerptLength="80" />)
-          }
+        <ArticlePreview article={mainFeaturedArticle} excerptLength="400" />
+        <div class="home-featured-grid__sidebar">
+          <OverflowGrid 
+            articles={otherFeaturedArticles} 
+            numOfArticles="3" 
+            columnSize="70%"
+          />
         </div>
       </div>
     </section>
@@ -43,14 +48,17 @@ allArticles.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
 
     <section class="section flow">
       <h2 class="heading-2">Travel articles</h2>
-      <div class="grid-auto-fit">
-        {allArticles.slice(0, 3).map((article) => <ArticlePreview {article} excerptLength="80" />)}
-      </div>
+      <OverflowGrid 
+        articles={allArticles.slice(0, 3)} 
+        numOfArticles="3" 
+        columnSize="70%"
+      />
     </section>
 
     <ViewAllBlogs />
     
     <!-- Newsletter signup -->
+    <NewsletterCTA />
 
   </div>
 
@@ -62,8 +70,13 @@ allArticles.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
     display: grid;
     gap: 1rem;
 
-    @media (min-width: 800px) {
-      grid-template-columns: 3fr 1fr;
+    @media (min-width: 768px) {
+      --overflow-grid-direction: vertical;
+      grid-template-columns: 1fr 1fr;
+
+      .home-featured-grid__sidebar {
+        --article-preview-layout: alternative;
+      }
     }
   }
 </style>

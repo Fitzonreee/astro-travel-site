@@ -30,6 +30,7 @@ const { article, excerptLength = 0 } = Astro.props
   @use "../styles/abstracts/" as *;
 
   article {
+    --_article-preview-layout: var(--article-preview-layout, default);
     --flow-spacer: #{$article-preview-spacing};
   }
 
@@ -49,5 +50,39 @@ const { article, excerptLength = 0 } = Astro.props
     object-fit: cover;
     aspect-ratio: $article-preview-image-aspect-ratio;
     border-radius: $border-radius-2;
+  }
+
+  @container style(--article-preview-layout: alternative) {
+    article {
+      --flow-spacer: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto auto 1fr;
+      grid-template-areas:
+        "image date"
+        "image title"
+        "image excerpt"
+        "image link"
+      ;
+      gap: 0.5rem 1rem;
+
+      .image-container {
+        grid-area: image;
+      }
+
+      h2 {
+        grid-area: title;
+      }
+
+      p {
+        grid-area: excerpt;
+      }
+
+      p:has(a) {
+        grid-area: link;
+      }
+
+    }
+
   }
 </style>
