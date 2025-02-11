@@ -1,9 +1,9 @@
 ---
-const { label } = Astro.props;
+const { label, ...rest } = Astro.props;
 ---
 
-<nav aria-label={label}>
-  <ul class="nav flex-group">
+<nav aria-label={label} {...rest}>
+  <ul class="nav" {...rest}>
     <slot />
   </ul>
 </nav>

@@ -30,13 +30,56 @@ const { skipTo = "#main" } = Astro.props;
   </div>
 </header>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @use "../styles/abstracts" as *;
 
   .site-header {
     color: $site-header-color;
     background-color: $site-header-background-color;
     padding: $site-header-padding;
+
+    .nav {
+      display: flex;
+      gap: $navigation-gap;
+    }
+
+    @supports (animation-timeline: view()) {
+      position: sticky;
+      z-index: 1000;
+      top: -10rem;
+
+      animation: sticky-nav forwards;
+      animation-timeline: view();
+      animation-range-start: 120vh;
+      animation-range-end: 160vh;
+
+      &__inner {
+        border-radius: 1rem;
+        backdrop-filter: var(--sticky-nav-effect, none);
+        background-color: var(--sticky-nav-bg, transparent);
+        padding: var(--sticky-nav-padding, 0);
+      }
+
+      @keyframes sticky-nav {
+        // styles need to be duplicated for from for animation to be smooth
+        from {
+          --sticky-nav-effect: blur(8px);
+          --sticky-nav-bg: hsl(0 0% 90% / .7);
+          --sticky-nav-padding: 1rem;
+          width: 1000px;
+          margin-inline: auto;
+        }
+        to {
+          --sticky-nav-effect: blur(8px);
+          --sticky-nav-bg: hsl(0 0% 90% / .7);
+          --sticky-nav-padding: 1rem;
+          width: 1000px;
+          margin-inline: auto;
+          top: 0;
+        }
+      }
+
+    }
 
     &__inner {
       display: flex;

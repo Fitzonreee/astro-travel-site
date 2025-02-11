@@ -23,12 +23,18 @@ import NavLinks from "../content/navigation/links.json";
   </div>
 </footer>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @use "../styles/abstracts" as *;
 
   .site-footer {
     background-color: $footer-background-color;
     color: $footer-text-color;
+
+    // This styles the .nav in the PrimaryNavigation component
+    .nav {
+      display: flex;
+      gap: $navigation-gap;
+    }
     
     a {
       color: $footer-link-color;

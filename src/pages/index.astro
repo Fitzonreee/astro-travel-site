@@ -18,7 +18,9 @@ allArticles.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
 ---
 
 <BaseLayout title="Let's get to work" withGradient>
+  
   <div class="container flow">
+    
     <section class="section">
       <h1 class="heading-1">Travel<br />Food Fun</h1>
       <p class="fs-500">
@@ -44,7 +46,7 @@ allArticles.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
       </div>
     </section>
 
-     <ViewAllBlogs />
+    <ViewAllBlogs />
 
     <section class="section flow">
       <h2 class="heading-2">Travel articles</h2>
@@ -57,7 +59,6 @@ allArticles.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
 
     <ViewAllBlogs />
     
-    <!-- Newsletter signup -->
     <NewsletterCTA />
 
   </div>
@@ -65,7 +66,6 @@ allArticles.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
 </BaseLayout>
 
 <style lang="scss" scoped>
-  // Temp styles -- will be cleaned up w/ finishing touches
   .home-featured-grid {
     display: grid;
     gap: 1rem;

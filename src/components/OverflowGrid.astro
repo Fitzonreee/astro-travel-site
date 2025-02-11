@@ -26,6 +26,7 @@ const { articles, numOfArticles, columnSize="40%", excerptLength = 80 } = Astro.
     padding-block-end: $size-4;
     gap: $size-4;
 
+    // Bug / overflow issue here with responsive Dev mode
     @container style(--_overflow-grid-direction: horizontal) {
       grid-auto-flow: column;
       grid-auto-columns: 1fr;
