@@ -107,6 +107,14 @@ $navigation-link-text-decoration: none;
 $navigation-font-family: $body-font-family;
 $navigation-font-weight: $font-weight-semi-bold;
 
+$sticky-nav-effect: blur(8px);
+$sticky-nav-bg: hsl(0 0% 90% / .7);
+$sticky-nav-padding: $size-8;
+$sticky-nav-border-radius: $border-radius-2;
+$sticky-nav-max-width: 1000px;
+$sticky-nav-medium-breakpoint: 960px;
+$sticky-nav-small-breakpoint: 500px;
+
 // Site footer
 $footer-background-color: transparent;
 $footer-text-color: $color-neutral-200;

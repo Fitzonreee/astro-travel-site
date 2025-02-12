@@ -1,10 +1,10 @@
 ---
-import Button from "./Button.astro";
 import LogoLink from "./LogoLink.astro";
-import NavigationLink from "./NavigationLink.astro";
 import PrimaryNavigation from "./PrimaryNavigation.astro";
+import NavigationLink from "./NavigationLink.astro";
 import SocialLinks from "./SocialLinks.astro";
 import NavLinks from "../content/navigation/links.json";
+import Button from "./Button.astro";
 const { skipTo = "#main" } = Astro.props;
 ---
 
@@ -13,22 +13,52 @@ const { skipTo = "#main" } = Astro.props;
 
   <div class="container">
     <div class="site-header__inner">
+      
       <LogoLink class="push-end" />
-      <PrimaryNavigation label="primary navigation">
-        <NavigationLink textContent="Home" url="/" />     
-        {
-          NavLinks.map((link) => (
-            <NavigationLink textContent={link.name} url={link.url} />            
-          ))
-        }
-      </PrimaryNavigation>
-      <SocialLinks />
-      <Button theme="primary">
-        Subscribe to Newsletter
-      </Button>
+
+      <button 
+        aria-controls="main-menu"
+        aria-expanded="false"
+      >
+        <span class="visually-hidden">Menu</span>
+        <img class="menu-icon" src="/images/icons/circle-menu.svg" alt="">
+        <img class="close-menu-icon" src="/images/icons/circle-x.svg" alt="">
+      </button>
+
+      <div class="nav-grid">
+        <PrimaryNavigation id="main-menu" label="primary navigation">
+          <NavigationLink textContent="Home" url="/" />     
+          {
+            NavLinks.map((link) => (
+              <NavigationLink textContent={link.name} url={link.url} />            
+            ))
+          }
+        </PrimaryNavigation>
+        <SocialLinks class="socials" />
+        <Button class="subscribe" theme="primary">
+          Subscribe to Newsletter
+        </Button>
+      </div>
+    
     </div>
   </div>
 </header>
+
+<script>
+  const navToggle = document.querySelector('[aria-controls="main-menu"]');
+
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      const isOpened = navToggle.getAttribute('aria-expanded');
+
+      if (isOpened === "true") {
+        navToggle.setAttribute('aria-expanded', 'false');
+      } else {
+        navToggle.setAttribute('aria-expanded', 'true');
+      }
+    })
+  }
+</script>
 
 <style lang="scss" scoped>
   @use "../styles/abstracts" as *;
@@ -38,52 +68,10 @@ const { skipTo = "#main" } = Astro.props;
     background-color: $site-header-background-color;
     padding: $site-header-padding;
 
-    .nav {
-      display: flex;
-      gap: $navigation-gap;
-    }
-
-    @supports (animation-timeline: view()) {
-      position: sticky;
-      z-index: 1000;
-      top: -10rem;
-
-      animation: sticky-nav forwards;
-      animation-timeline: view();
-      animation-range-start: 120vh;
-      animation-range-end: 160vh;
-
-      &__inner {
-        border-radius: 1rem;
-        backdrop-filter: var(--sticky-nav-effect, none);
-        background-color: var(--sticky-nav-bg, transparent);
-        padding: var(--sticky-nav-padding, 0);
-      }
-
-      @keyframes sticky-nav {
-        // styles need to be duplicated for from for animation to be smooth
-        from {
-          --sticky-nav-effect: blur(8px);
-          --sticky-nav-bg: hsl(0 0% 90% / .7);
-          --sticky-nav-padding: 1rem;
-          width: 1000px;
-          margin-inline: auto;
-        }
-        to {
-          --sticky-nav-effect: blur(8px);
-          --sticky-nav-bg: hsl(0 0% 90% / .7);
-          --sticky-nav-padding: 1rem;
-          width: 1000px;
-          margin-inline: auto;
-          top: 0;
-        }
-      }
-
-    }
-
     &__inner {
       display: flex;
-      gap: $size-10;
+      position: relative;
+      gap: $size-4;
       align-items: $site-header-alignment;
       justify-content: $site-header-jusitifcation-small-screens;
 
@@ -91,9 +79,165 @@ const { skipTo = "#main" } = Astro.props;
         justify-content: $site-header-jusitifcation-large-screens;
       }
     }
+
+    .nav {
+      display: flex;
+      gap: $navigation-gap;
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-auto-flow: column;
+      align-items: center;
+      gap: $navigation-gap;
+    }
+
+    [aria-controls="main-menu"] {
+      display: none;
+      // Remove default button styling
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+    }
+
+    @keyframes fade-down {
+      from {
+        opacity: 0;
+        transform: translateY(-120px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: $sticky-nav-medium-breakpoint) {
+      .nav-grid {
+        display: none;
+        // Display grid turned on below
+        gap: 1rem;
+        grid-template-areas:
+          'nav socials'
+          'nav subscribe'
+        ;
+        position: absolute;
+        left: 0;
+        padding: $sticky-nav-padding;
+        border-radius: $sticky-nav-border-radius;
+        background: $sticky-nav-bg;
+        backdrop-filter: $sticky-nav-effect;
+        width: 100%;
+        top: calc(100% + 12px);
+
+        animation: fade-down 400ms ease;
+
+        [aria-label="primary navigation"] {
+          grid-area: nav;
+        }
+
+        .socials {
+          grid-area: socials;
+          align-self: start;
+        }
+
+        .subscribe {
+          grid-area: subscribe;
+          align-self: end;
+        }
+        
+        .nav {
+          flex-direction: column;
+        }
+
+      }
+
+      [aria-controls="main-menu"] {
+        display: block;
+        position: absolute;
+        right: $sticky-nav-padding;
+
+        &[aria-expanded="true"] > .menu-icon {
+          display: none;
+        }
+
+        
+        &[aria-expanded="false"] > .close-menu-icon {
+          display: none;
+        }
+
+      }
+
+      // When expanded, style the nav-grid
+      [aria-expanded="true"] + .nav-grid {
+        display: grid;
+      }
+
+    }
+
+    @media (max-width: $sticky-nav-small-breakpoint) {
+      .nav-grid {
+        gap: 4rem;
+        grid-template-areas:
+          'nav'
+          'socials'
+          'subscribe'
+        ;
+      }
+    }
+
+    @supports (animation-timeline: view()) {
+      position: sticky;
+      z-index: 1000;
+      top: -10rem;
+
+      &:has([aria-expanded="true"]) {
+        top: 0;
+      }
+
+      animation: sticky-nav forwards;
+      animation-timeline: view();
+      animation-range-start: 120vh;
+      animation-range-end: 160vh;
+
+      &__inner {
+        padding: var(--sticky-nav-padding);
+      }
+
+      &__inner::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: $sticky-nav-border-radius;
+        backdrop-filter: var(--sticky-nav-effect, none);
+        background-color: var(--sticky-nav-bg, transparent);
+      }
+
+      @keyframes sticky-nav {
+        // styles need to be duplicated for from for animation to be smooth
+        from {
+          --sticky-nav-effect: #{$sticky-nav-effect};
+          --sticky-nav-bg: #{$sticky-nav-bg};
+          --sticky-nav-padding: #{$sticky-nav-padding};
+          width: min($sticky-nav-max-width, 90%);
+          margin-inline: auto;
+        }
+        to {
+          --sticky-nav-effect: #{$sticky-nav-effect};
+          --sticky-nav-bg: #{$sticky-nav-bg};
+          --sticky-nav-padding: #{$sticky-nav-padding};
+          width: min($sticky-nav-max-width, 90%);
+          margin-inline: auto;
+          top: 0;
+        }
+      }
+
+    }
+
   }
 
   .skip-navigation {
+    opacity: 0;
     position: absolute;
     transform: translateY(-100%);
     inset: 0 0 auto 0;

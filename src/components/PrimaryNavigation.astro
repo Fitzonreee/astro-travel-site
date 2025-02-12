@@ -1,8 +1,8 @@
 ---
-const { label, ...rest } = Astro.props;
+const { label, id, ...rest } = Astro.props;
 ---
 
-<nav aria-label={label} {...rest}>
+<nav {id} aria-label={label} {...rest}>
   <ul class="nav" {...rest}>
     <slot />
   </ul>
@@ -17,5 +17,14 @@ const { label, ...rest } = Astro.props;
     list-style: none;
     font-family: $navigation-font-family;
     font-weight: $navigation-font-weight;
+
+    a {
+      color: $navigation-color;
+      text-decoration: $navigation-link-text-decoration;
+
+      &:is(:hover, :focus) {
+        color: $navigation-color-hover;
+      }
+    }
   }
 </style>
