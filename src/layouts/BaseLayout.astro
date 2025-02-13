@@ -2,12 +2,12 @@
 import BaseHead from "../components/BaseHead.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
-const { title, withGradient } = Astro.props;
+const { title, description, author, ogimage, withGradient } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-  <BaseHead {title} />
+  <BaseHead {title} {description} {author} {ogimage}/>
   <body class={withGradient && "with-gradient"}>
     <SiteHeader />
     <main id="main">

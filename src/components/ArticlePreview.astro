@@ -14,7 +14,7 @@ const { article, excerptLength = 0 } = Astro.props
     <Tag class="tag" tag={article.data.tags[0]} />
   </div>
   <FormattedDate date={article.data.date} />
-  <h2 class="fs-500 fw-bold">{article.data.title}</h2>
+  <h2 transition:name={article.data.title} transition:persist class="fs-500 fw-bold">{article.data.title}</h2>
   {
     excerptLength > 0 && <p> {createExcerpt(article.body).substring(0, excerptLength)}...</p>
   }

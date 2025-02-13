@@ -8,7 +8,7 @@ import Button from "./Button.astro";
 const { skipTo = "#main" } = Astro.props;
 ---
 
-<header class="site-header">
+<header class="site-header" transition:persist>
   <a href={skipTo} class="skip-navigation">Skip to content</a>
 
   <div class="container">
