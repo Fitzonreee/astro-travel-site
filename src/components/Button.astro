@@ -1,6 +1,4 @@
 ---
-import type { ACTION_ERROR_CODES } from "astro:actions";
-
 const { href, theme = "default", class: className, ...rest } = Astro.props;
 let El = "button";
 if (href) El = "a";
