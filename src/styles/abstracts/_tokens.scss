@@ -64,6 +64,10 @@ $heading-2-font-size: $font-size-800;
 $heading-2-color: $color-primary-400;
 $heading-3-font-size: $font-size-700;
 $heading-3-color: $heading-color-default;
+$heading-4-font-size: $font-size-600;
+$heading-4-color: $heading-color-default;
+// Not wire up yet
+// $heading-4-font-weight: $font-weight-bold;
 
 // Layout
 $grid-gap: $size-6;
@@ -214,10 +218,10 @@ $form-input-border-radius: $border-radius-2;
 $form-input-padding: $size-3 $size-6;
 
 // NewsletterCTA
-$newsletter-cta-base-heading-family: $font-family-accent;
-$newsletter-cta-base-heading-size: $font-size-600;
-$newsletter-cta-base-heading-weight: $font-weight-bold;
-$newsletter-cta-base-heading-color: $color-neutral-black;
+// $newsletter-cta-base-heading-family: $font-family-accent;
+// $newsletter-cta-base-heading-size: $font-size-600;
+// $newsletter-cta-base-heading-weight: $font-weight-bold;
+// $newsletter-cta-base-heading-color: $color-neutral-black;
 $newsletter-cta-base-body-size: $font-size-500;
 $newsletter-cta-base-body-color: $color-neutral-300;
 $newsletter-cta-base-padding: $size-8;
@@ -228,7 +232,7 @@ $newsletter-cta-base-background-image: linear-gradient(
 $newsletter-cta-base-border-radius: $border-radius-2;
 $newsletter-cta-base-border: 1px solid $color-neutral-100;
 
-$newsletter-cta-image-heading-size: $font-size-700;
+// $newsletter-cta-image-heading-size: $font-size-700;
 $newsletter-cta-image-heading-max-width: 23ch;
 $newsletter-cta-image-body-color: $color-neutral-black;
 $newsletter-cta-image-background-image: linear-gradient(

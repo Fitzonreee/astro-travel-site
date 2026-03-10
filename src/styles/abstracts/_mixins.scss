@@ -23,6 +23,7 @@
   }
 }
 
+// Modify to pass in font-weight and font-family
 @mixin heading($fs, $color: $heading-color-default) {
   font-size: $fs;
   color: $color;

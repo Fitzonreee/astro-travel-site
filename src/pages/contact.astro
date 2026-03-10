@@ -2,17 +2,30 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Button from "../components/Button.astro";
 import NewsletterCTA from "../components/NewsletterCTA.astro";
+
+const sectionsCopy = [
+  { 
+    form: {
+      heading: "Send a message",
+      body: "Feel free to use the form below to drop us a message. We'll do our best to respond to your inquiry as soon as possible."
+    },
+    social: {
+      heading: "Stay Connected on Social Media",
+      body: "For more instant updates, engaging content, and to be a part of our vibrant community, follow us on social media. Feel free to tag us in your travel and food adventures—we love hearing from fellow explorers!"
+    },
+    newsletter: {
+      heading: "Let's connect and explore together",
+      body: "Thank you for considering reaching out to Travel Fun Food. We look forward to connecting with you and sharing more adventures together. Whether it's through email, social media, or in person, let's make the journey of exploration and discovery even more enjoyable."
+    }
+  }
+]
 ---
 
 <BaseLayout title="Contact">
-  <div class="container flow">
-    <section class="margin-block-10">
-      <h1 class="heading-2">Send a message</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum nulla
-        repellendus dolore quam quas? Nisi eaque veniam dolorem enim. Odit
-        incidunt nisi dignissimos facilis perspiciatis quidem accusantium at
-        consectetur minus.
+  <div class="container flow" data-type="narrow">
+    <section class="padding-block-end-11 margin-block-end-11">
+      <h1 class="heading-2 margin-block-end-1">{sectionsCopy[0].form.heading}</h1>
+      <p class="fs-600">{sectionsCopy[0].form.body}</p>
       </p>
       <form class="margin-block-start-10">
         <div class="flex-group stacked full-width margin-block-end-6">
@@ -30,20 +43,25 @@ import NewsletterCTA from "../components/NewsletterCTA.astro";
         <Button theme="primary" class="full-width">Send a message</Button>
       </form>
     </section>
-    <section class="margin-block-10">
-      <h2 class="heading-3">Stay Connected on Social Media</h2>
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum nulla
-        repellendus dolore quam quas? Nisi eaque veniam dolorem enim. Odit
-        incidunt nisi dignissimos facilis perspiciatis quidem accusantium at
-        consectetur minus.</p>
+    <section class="margin-block-end-11">
+      <h2 class="heading-4 margin-block-end-3">{sectionsCopy[0].social.heading}</h2>
+      <p>{sectionsCopy[0].social.body}</p>
+      <div class="social-buttons padding-block-8">
+        <p>Social links go there</p>
+      </div>
     </section>
-    <section class="margin-block-10">
-      <h2 class="heading-3">Let's connect and explore together</h2>
-      <p class="margin-block-end-10">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum nulla
-        repellendus dolore quam quas? Nisi eaque veniam dolorem enim. Odit
-        incidunt nisi dignissimos facilis perspiciatis quidem accusantium at
-        consectetur minus.</p>
+    <section class="padding-block-end-14 margin-block-11">
+      <h2 class="heading-4 margin-block-end-3">{sectionsCopy[0].newsletter.heading}</h2>
+      <p class="margin-block-end-10">{sectionsCopy[0].newsletter.body}</p>
       <NewsletterCTA />
     </section>
   </div>
 </BaseLayout>
+
+<style lang="scss" scoped>
+  @use "../styles/abstracts" as *;
+
+  section {
+    border-bottom: 1px solid $color-neutral-100;
+  }
+</style>

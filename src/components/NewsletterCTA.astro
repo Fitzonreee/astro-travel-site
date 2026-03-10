@@ -4,7 +4,7 @@ const { withImage } = Astro.props
 ---
 
 <section class:list={withImage && "with-image"}>
-  <h2>Want to get the latest insights on Travel Fun Food?</h2>
+  <h2 class="heading-4">Want to get the latest insights on Travel Fun Food?</h2>
   <p>We promise, we won't spam you.</p>
   <form class="margin-block-start-10">
      <label class="visually-hidden" for="email">Email:</label>
@@ -27,13 +27,6 @@ const { withImage } = Astro.props
     color: $newsletter-cta-base-body-color;
   }
 
-  h2 {
-    color: $newsletter-cta-base-heading-color;
-    font-family: $newsletter-cta-base-heading-family;
-    font-size: $newsletter-cta-base-heading-size;
-    font-weight: $newsletter-cta-base-heading-weight;
-  }
-
   input {
     flex: 1;
   }
@@ -46,7 +39,6 @@ const { withImage } = Astro.props
     background-position: $newsletter-cta-image-background-position;
 
     h2 {
-      font-size: $newsletter-cta-image-heading-size;
       max-width: $newsletter-cta-image-heading-max-width;
     }
   }
