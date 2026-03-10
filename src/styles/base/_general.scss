@@ -21,9 +21,14 @@ a:is(:hover, :focus) {
   text-decoration: $link-decoration-hover;
 }
 
-input {
+input,
+textarea {
   font: $form-input-font;
   border: $form-input-border;
   border-radius: $form-input-border-radius;
   padding: $form-input-padding;
+}
+
+textarea {
+  resize: vertical;
 }

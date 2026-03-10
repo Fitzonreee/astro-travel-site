@@ -1,15 +1,49 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/Button.astro";
+import NewsletterCTA from "../components/NewsletterCTA.astro";
 ---
 
 <BaseLayout title="Contact">
   <div class="container flow">
-    <h1 class="heading-1">Contact</h1>
-    <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum nulla
-      repellendus dolore quam quas? Nisi eaque veniam dolorem enim. Odit
-      incidunt nisi dignissimos facilis perspiciatis quidem accusantium at
-      consectetur minus.
-    </p>
+    <section class="margin-block-10">
+      <h1 class="heading-2">Send a message</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum nulla
+        repellendus dolore quam quas? Nisi eaque veniam dolorem enim. Odit
+        incidunt nisi dignissimos facilis perspiciatis quidem accusantium at
+        consectetur minus.
+      </p>
+      <form class="margin-block-start-10">
+        <div class="flex-group stacked full-width margin-block-end-6">
+          <label for="name" class="visually-hidden">Name:</label>
+          <input id="name" class="full-width" placeholder="Name">
+        </div>
+        <div class="flex-group stacked full-width margin-block-end-6">
+          <label for="email" class="visually-hidden">email:</label>
+          <input id="email" placeholder="Email">
+        </div>
+        <div class="flex-group stacked full-width margin-block-end-6">
+          <label for="message" class="visually-hidden">Message:</label>
+          <textarea id="message" placeholder="Message" rows="5"></textarea>
+        </div>
+        <Button theme="primary" class="full-width">Send a message</Button>
+      </form>
+    </section>
+    <section class="margin-block-10">
+      <h2 class="heading-3">Stay Connected on Social Media</h2>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum nulla
+        repellendus dolore quam quas? Nisi eaque veniam dolorem enim. Odit
+        incidunt nisi dignissimos facilis perspiciatis quidem accusantium at
+        consectetur minus.</p>
+    </section>
+    <section class="margin-block-10">
+      <h2 class="heading-3">Let's connect and explore together</h2>
+      <p class="margin-block-end-10">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum nulla
+        repellendus dolore quam quas? Nisi eaque veniam dolorem enim. Odit
+        incidunt nisi dignissimos facilis perspiciatis quidem accusantium at
+        consectetur minus.</p>
+      <NewsletterCTA />
+    </section>
   </div>
 </BaseLayout>

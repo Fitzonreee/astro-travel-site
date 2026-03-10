@@ -7,13 +7,17 @@
   row-gap: var(--flex-row-gap, calc($flex-group-gap / 2));
   width: fit-content;
 
+  &.stacked {
+    flex-direction: column;
+  }
+
   &.mx-auto {
     justify-content: center;
   }
 
-  &.full-width {
-    width: 100%;
-  }
+  // &.full-width {
+  //   width: 100%;
+  // }
 
   &.align-center {
     align-items: center;
